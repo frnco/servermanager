@@ -1,0 +1,45 @@
+{{#servers}}
+server {
+    listen 0.0.0.0:{{port}};
+    server_name {{name}};
+    root {{root}};
+    
+    access_log /var/logs/nginx/{{name}}/access.log;
+    error_log /var/logs/nginx/{{name}}/error.log;
+
+    index index.php index.html index.htm;
+
+    {{#locations}}
+    location {{path}} {
+        try_files $uri $uri/ /index.php/$uri;
+    }
+    {{/locations}}
+
+    {{#locations_rewrites}}
+    location {{path}} {
+        rewrite ^/{{rewrite}}(/.*)$ $1 last;
+    }
+    {{/locations_rewrites}}
+
+
+    {{#locations_redirects}}
+    location {{path}} {
+        return 301 $scheme://{{uri}}$request_uri;
+    }
+    {{/locations_rewrites}}
+
+    #Pass PHP Requests to Nginx
+     location ~* \.php {
+        fastcgi_index   index.php;
+        fastcgi_pass    127.0.0.1:9000;
+        #fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+        include         fastcgi_params;
+        fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        fastcgi_param  PATH_INFO       $fastcgi_path_info;
+        fastcgi_param  ORIG_PATH_INFO     $fastcgi_path_info;
+    }
+}
+{{/servers}}

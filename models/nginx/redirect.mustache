@@ -1,0 +1,7 @@
+{{#servers}}
+server {
+  listen 0.0.0.0:{{port}};
+  server_name {{name}};
+  return 301 $scheme://{{root}}$request_uri;
+}
+{{/servers}}

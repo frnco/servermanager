@@ -1,0 +1,10 @@
+{{#servers}}
+server {
+    listen 0.0.0.0:{{port}};
+    server_name {{name}};
+    root {{root}};
+    passenger_enabled on;
+    passenger_app_env {{environment}};
+    passenger_friendly_error_pages {{debug}};
+}
+{{/servers}}

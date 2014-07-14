@@ -1,0 +1,17 @@
+{
+  "exampleHook" : {
+    "type": "php",
+    "gitPath": "/var/repositories/example",
+    "file": "post-update",
+    "actions": {
+      "updateMaster": {
+        "path": "/var/www/example/site_folder",
+        "branch": "master"
+      },
+      "updateTesting": {
+        "path": "/var/www/example/site_folder",
+        "branch": "master"
+      }
+    }
+  }
+}
