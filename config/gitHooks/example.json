@@ -3,15 +3,15 @@
     "type": "php",
     "gitPath": "/var/repositories/example",
     "file": "post-update",
-    "actions": {
-      "updateMaster": {
+    "actions": [
+      {
         "path": "/var/www/example/site_folder",
         "branch": "master"
       },
-      "updateTesting": {
+      {
         "path": "/var/www/example/site_folder",
         "branch": "testing"
       }
-    }
+    ]
   }
 }
