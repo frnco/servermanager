@@ -3,6 +3,14 @@ ServerManager
 
 NOT WORKING AS OF YET.
 
+This is a project I'm making to manage my own VPSs. Anyone willing to help will be welcome.
+
+The idea is to package it on the future and make it easier to create new Models and Config files to import, so that people can simply add ServerManager as a dependency. It's also ideal because I myself want it to run through a `git-hook` whenever I push changes on the config files to the server.
+
+
+Now to the point:
+---------------------
+
 ServerManager is a Node Application to maintain Nginx Configuration Files and Git Hooks.
 
 It will use .mustache templates to create the right files for your gitHooks and Server Configurations
@@ -10,7 +18,7 @@ It will use .mustache templates to create the right files for your gitHooks and 
 How it's gonna work:
 
 
-For Server (NGinx) management:
+### For Server (NGinx) management:
 
 You edit `config/server.json` for the correct NGinx Paths.
 (In the future there will also be an option for Apache.)
@@ -50,7 +58,8 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite,json`:
 The ServerManager will parse this file, choose the appropriate model (Using the `type` attribute) and create this file in the path for your
 
 
-For GitHooks:
+### For GitHooks:
+
 You creat a JSON file under `config/gitHooks`, i.e. a file called `webSite,json`:
 
     {
