@@ -32,23 +32,23 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite,json`:
         "port": "80",
         "name": "www.example.com",
         "root": "/var/www/example/site_folder",
-        "locations": {
-          "root": {
+        "locations": [
+          {
             "path": "/"
           }
-        },
-        "rewriteLocations": {
-          "Downloads": {
-            "path": "/examplePath",
-            "destination": "/correctPath"
+        ],
+        "rewriteLocations": [
+          {
+            "path": "/exampleURL",
+            "destination": "/correctURL"
           }
-        },
-        "redirectLocations": {
-          "Downloads" : {
+        ],
+        "redirectLocations": [
+          {
             "path": "/downloads",
             "uri": "downloads.example.com"
           }
-        }
+        ]
       }
     }
 
@@ -67,16 +67,16 @@ You creat a JSON file under `config/gitHooks`, i.e. a file called `webSite,json`
         "type": "php",
         "gitPath": "/var/repositories/example",
         "file": "post-update",
-        "actions": {
-          "updateMaster": {
+        "actions": [
+          {
             "path": "/var/www/example/site_folder",
             "branch": "master"
           },
-          "updateTesting": {
+          {
             "path": "/var/www/example/site_folder",
             "branch": "testing"
           }
-        }
+        ]
       }
     }
 
