@@ -1,32 +1,31 @@
-{{#servers}}
 server {
-    listen 0.0.0.0:{{port}};
-    server_name {{name}};
-    root {{root}};
+    listen 0.0.0.0:{{{port}}};
+    server_name {{{name}}};
+    root {{{root}}};
     
-    access_log /var/logs/nginx/{{name}}/access.log;
-    error_log /var/logs/nginx/{{name}}/error.log;
+    access_log /var/logs/nginx/{{{name}}}/access.log;
+    error_log /var/logs/nginx/{{{name}}}/error.log;
 
     index index.php index.html index.htm;
 
     {{#locations}}
-    location {{path}} {
+    location {{{path}}} {
         try_files $uri $uri/ /index.php/$uri;
     }
     {{/locations}}
 
-    {{#locations_rewrites}}
-    location {{path}} {
-        rewrite ^/{{rewrite}}(/.*)$ $1 last;
+    {{#rewriteLocations}}
+    location {{{path}}} {
+        rewrite ^/{{{rewrite}}}(/.*)$ $1 last;
     }
-    {{/locations_rewrites}}
+    {{/rewriteLocations}}
 
 
-    {{#locations_redirects}}
-    location {{path}} {
-        return 301 $scheme://{{uri}}$request_uri;
+    {{#redirectLocations}}
+    location {{{path}}} {
+        return 301 $scheme://{{{uri}}}$request_uri;
     }
-    {{/locations_rewrites}}
+    {{/redirectLocations}}
 
     #Pass PHP Requests to Nginx
      location ~* \.php {
@@ -42,4 +41,3 @@ server {
         fastcgi_param  ORIG_PATH_INFO     $fastcgi_path_info;
     }
 }
-{{/servers}}

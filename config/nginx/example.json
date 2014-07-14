@@ -4,22 +4,22 @@
     "port": "80",
     "name": "www.example.com",
     "root": "/var/www/example/site_folder",
-    "locations": {
-      "root": {
+    "locations": [
+      {
         "path": "/"
       }
-    },
-    "rewriteLocations": {
-      "Downloads": {
+    ],
+    "rewriteLocations": [
+      {
         "path": "/exampleURL",
         "destination": "/correctURL"
       }
-    },
-    "redirectLocations": {
-      "Downloads" : {
+    ],
+    "redirectLocations": [
+      {
         "path": "/downloads",
         "uri": "downloads.example.com"
       }
-    }
+    ]
   }
 }
