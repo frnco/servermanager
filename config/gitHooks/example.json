@@ -10,7 +10,7 @@
       },
       "updateTesting": {
         "path": "/var/www/example/site_folder",
-        "branch": "master"
+        "branch": "testing"
       }
     }
   }
