@@ -31,8 +31,8 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite,json`:
         },
         "rewriteLocations": {
           "Downloads": {
-            "path": "/exampleURL",
-            "destination": "/correctURL"
+            "path": "/examplePath",
+            "destination": "/correctPath"
           }
         },
         "redirectLocations": {
@@ -44,6 +44,8 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite,json`:
       }
     }
 
+
+`rewriteLocations` work so as to rewrite many things, i.e. `www.example.com/Downloads` to `www.example.com/downloads`. You omit the URL (`www.example.com`) when writing the JSON.
 
 The ServerManager will parse this file, choose the appropriate model (Using the `type` attribute) and create this file in the path for your
 
