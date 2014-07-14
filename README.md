@@ -5,6 +5,8 @@ NOT WORKING AS OF YET.
 
 ServerManager is a Node Application to maintain Nginx Configuration Files and Git Hooks.
 
+It will use .mustache templates to create the right files for your gitHooks and Server Configurations
+
 How it's gonna work:
 
 
