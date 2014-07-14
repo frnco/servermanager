@@ -1,4 +1,4 @@
-servermanager
+ServerManager
 =============
 
 NOT WORKING AS OF YET.
