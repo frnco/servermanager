@@ -1,6 +1,5 @@
 var fs = require('graceful-fs'),
   path = require('path'),
-  JSON = require('JSON'),
   mustache = require('mustache');
 
 
