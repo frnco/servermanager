@@ -63,7 +63,7 @@ You creat a JSON file under `config/gitHooks`, i.e. a file called `webSite,json`
           },
           "updateTesting": {
             "path": "/var/www/example/site_folder",
-            "branch": "master"
+            "branch": "testing"
           }
         }
       }
