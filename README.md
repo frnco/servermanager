@@ -20,7 +20,7 @@ How it's gonna work:
 
 ### For Server (NGinx) management:
 
-You edit `config/server.json` for the correct NGinx Paths. 
+You edit `config/server.json` for the correct NGinx Paths.  
 (In the future there will also be an option for Apache.)
 
 
