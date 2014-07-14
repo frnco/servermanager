@@ -24,7 +24,7 @@ nginx.forEach(function (jsonObj) {
   for (var key in servers) {
     server = servers[key];
     var modelFile = fs.readFileSync('./models/nginx/'+server.type+'.mustache').toString();
-    
+
     var output = Mustache.render(modelFile, server);
     console.log(output);
   }

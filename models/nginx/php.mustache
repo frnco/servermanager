@@ -10,7 +10,7 @@ server {
 
     {{#locations}}
     location {{{path}}} {
-        try_files $uri $uri/ /index.php/$uri;
+        try_files{{#tries}} {{{try}}}{{/tries}}
     }
     {{/locations}}
 
