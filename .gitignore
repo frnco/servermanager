@@ -23,3 +23,9 @@ build/Release
 # Deployed apps should consider commenting this line out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
+
+config/nginx/*.json
+!config/nginx/example.json
+
+config/gitHooks/*.json
+!config/gitHooks/example.json

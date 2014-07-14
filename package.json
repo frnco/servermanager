@@ -1,0 +1,15 @@
+{
+  "name": "ServerManager",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/supervisor ./app.js"
+  },
+  "dependencies": {
+    "supervisor": "*",
+    "graceful-fs": "*",
+    "path": "*",
+    "JSON": "*",
+    "mustache": "*"
+  }
+}
