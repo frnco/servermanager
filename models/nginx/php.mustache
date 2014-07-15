@@ -16,7 +16,7 @@ server {
 
     {{#server.rewriteLocations}}
     location {{{path}}} {
-        rewrite ^/{{{rewrite}}}(/.*)$ $1 last;
+        rewrite ^{{{path}}}(.*) {{{destination}}}$1 last;
     }
     {{/server.rewriteLocations}}
 
