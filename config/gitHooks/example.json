@@ -1,17 +1,20 @@
 {
-  "exampleHook" : {
-    "type": "php",
-    "gitPath": "/var/repositories/example",
-    "file": "post-update",
-    "actions": [
-      {
-        "path": "/var/www/example/site_folder",
-        "branch": "master"
-      },
-      {
-        "path": "/var/www/example/site_folder",
-        "branch": "testing"
-      }
-    ]
-  }
+  "actions": [
+    {
+      "header": "#!/bin/bash -l",
+      "type": "post-update",
+      "version": "php",
+      "gitPath": "/var/repositories/example",
+      "actions": [
+        {
+          "path": "/var/www/example/site_folder",
+          "branch": "master"
+        },
+        {
+          "path": "/var/www/example/site_folder",
+          "branch": "testing"
+        }
+      ]
+    }
+  ]
 }

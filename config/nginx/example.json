@@ -1,12 +1,23 @@
-{
-  "webSite": {
+[
+  {
     "type": "php",
     "port": "80",
     "name": "www.example.com",
     "root": "/var/www/example/site_folder",
     "locations": [
       {
-        "path": "/"
+        "path": "/",
+          "tries": [
+            {
+              "try": "$uri "
+            },
+            {
+              "try": "$uri/"
+            },
+            {
+              "try": "/index.php/$uri"
+            }
+          ]
       }
     ],
     "rewriteLocations": [
@@ -22,4 +33,4 @@
       }
     ]
   }
-}
+]
