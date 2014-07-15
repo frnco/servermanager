@@ -3,7 +3,7 @@ echo "*************************"
 echo "**** Moving to Live *****"
 echo "*************************"
 
-cd {{path}} || exit
+cd {{{path}}} || exit
 
 unset GIT_DIR
 
@@ -11,7 +11,7 @@ echo "*************************"
 echo "**** Pulling to Live ****"
 echo "*************************"
 
-git pull origin {{branch}}
+git pull origin {{{branch}}}
 
 echo "**********************"
 echo "*** NPM Installing ***"

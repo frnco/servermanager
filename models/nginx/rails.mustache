@@ -1,8 +1,13 @@
 server {
-    listen 0.0.0.0:{{{port}}};
-    server_name {{{name}}};
-    root {{{root}}};
+    listen 0.0.0.0:{{{server.port}}};
+    server_name {{{server.name}}};
+    root {{{server.root}}};
+
+    access_log {{{logsFolder}}}/{{{server.name}}}/access.log;
+    error_log {{{logsFolder}}}/{{{server.name}}}/error.log;
+
+    
     passenger_enabled on;
-    passenger_app_env {{{environment}}};
-    passenger_friendly_error_pages {{{debug}}};
+    passenger_app_env {{{server.environment}}};
+    passenger_friendly_error_pages {{{server.debug}}};
 }

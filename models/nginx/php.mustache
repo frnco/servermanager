@@ -1,31 +1,31 @@
 server {
-    listen 0.0.0.0:{{{port}}};
-    server_name {{{name}}};
-    root {{{root}}};
+    listen 0.0.0.0:{{{server.port}}};
+    server_name {{{server.name}}};
+    root {{{server.root}}};
     
-    access_log /var/logs/nginx/{{{name}}}/access.log;
-    error_log /var/logs/nginx/{{{name}}}/error.log;
+    access_log {{{logsFolder}}}/{{{server.name}}}/access.log;
+    error_log {{{logsFolder}}}/{{{server.name}}}/error.log;
 
     index index.php index.html index.htm;
 
-    {{#locations}}
+    {{#server.locations}}
     location {{{path}}} {
         try_files{{#tries}} {{{try}}}{{/tries}}
     }
-    {{/locations}}
+    {{/server.locations}}
 
-    {{#rewriteLocations}}
+    {{#server.rewriteLocations}}
     location {{{path}}} {
         rewrite ^/{{{rewrite}}}(/.*)$ $1 last;
     }
-    {{/rewriteLocations}}
+    {{/server.rewriteLocations}}
 
 
-    {{#redirectLocations}}
+    {{#server.redirectLocations}}
     location {{{path}}} {
         return 301 $scheme://{{{uri}}}$request_uri;
     }
-    {{/redirectLocations}}
+    {{/server.redirectLocations}}
 
     #Pass PHP Requests to Nginx
      location ~* \.php {

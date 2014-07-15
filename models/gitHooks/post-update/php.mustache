@@ -1,10 +1,9 @@
-#!/bin/bash -l
 
 echo "*************************"
 echo "**** Moving to Live *****"
 echo "*************************"
 
-cd {{path}} || exit
+cd {{{path}}} || exit
 
 unset GIT_DIR
 
@@ -12,19 +11,7 @@ echo "*************************"
 echo "**** Pulling to Live ****"
 echo "*************************"
 
-git pull origin {{branch}}
-
-echo "*************************"
-echo "*** Bundle Installing ***"
-echo "*************************"
-
-bundle install
-
-echo "********************"
-echo "*** Migrating DB ***"
-echo "********************"
-
-rake db:migrate
+git pull origin {{{branch}}}
 
 echo "*************************"
 echo "*** Restarting Server ***"
@@ -35,5 +22,3 @@ sudo service nginx restart
 echo "*************************"
 echo "********* Done **********"
 echo "*************************"
-
-#exec git-update-server-info
