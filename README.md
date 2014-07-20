@@ -26,13 +26,12 @@ You edit `config/server.json` for the correct NGinx Paths.
       "serverType": "nginx",
       "availablePath": "/etc/nginx/sites-available",
       "enabledPath": "/etc/nginx/sites-enabled",
-      "logsFolder": "/var/logs/nginx"
+      "logsFolder": "/var/logs/nginx",
+      "restartCommand": "sudo service nginx restart"
     }
 
 
-Pretty straightforward. As you can imagine, the file will be created on the `availablePath` and Symlinked to the `enabledPath`. Also, all Logs will be put under the `logsFolder`, and everything will be logged.
-
-In the future, an option will possibly be added to decide if a file is to be enabled or not, but by design I plan on it being that either the whole `JSON` file will be enabled or not, so keep separate files for separate stuff.
+Pretty straightforward. As you can imagine, the file will be created on the `availablePath` and, if enabled, Symlinked to the `enabledPath`. Also, all Logs will be put under the `logsFolder`, and everything will be logged.
 
 ### For Server (NGinx) management:
 
@@ -40,6 +39,7 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite.json`:
 
     [
       {
+        "enabled": "true",
         "type": "php",
         "port": "80",
         "name": "www.example.com",
@@ -75,6 +75,8 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite.json`:
       }
     ]
 
+
+`enabled` defines if there will be a file created for this or not. If not enabled, this won't be published.
 
 `rewriteLocations` work so as to rewrite URL segments, i.e. `www.example.com/Downloads` to `www.example.com/downloads`. You omit the URL (`www.example.com`) when writing the JSON.
 
