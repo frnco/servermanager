@@ -10,7 +10,7 @@ server {
 
     {{#server.locations}}
     location {{{path}}} {
-        try_files{{#tries}} {{{try}}}{{/tries}}
+        try_files{{#tries}} {{{try}}}{{/tries}};
     }
     {{/server.locations}}
 
