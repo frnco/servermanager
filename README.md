@@ -1,7 +1,10 @@
 ServerManager
 =============
 
-NOT WORKING AS OF YET.
+### What Works
+
+* Nginx -> Setting up configuratioin files using JSon.
+
 
 This is a project I'm making to manage my own VPSs. Anyone willing to help will be welcome.
 
