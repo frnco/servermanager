@@ -3,7 +3,11 @@ ServerManager
 
 ### What Works
 
-* Nginx -> Setting up configuratioin files using JSon.
+* Nginx -> Setting up and deploying configuratioin files using JSon.
+
+### What doesn't Work
+
+* GitHooks -> Setting up and deploying Git Hooks.
 
 
 This is a project I'm making to manage my own VPSs. Anyone willing to help will be welcome.
