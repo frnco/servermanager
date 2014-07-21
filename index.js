@@ -8,7 +8,6 @@ nginx = [];
 gitHooks = [];
 
 var config = require('./config/server');
-console.log(config.availablePath);
 
 fs.readdirSync("./config/nginx/").forEach(function(file) {
   if (file != 'example.json') {
@@ -29,13 +28,32 @@ nginx.forEach(function (jsonObj) {
 
     var output = Mustache.render(modelFile, {logsFolder: config.logsFolder, server: server});
 
+
     var availablePath = config.availablePath+"/"+server.name+".conf";
     var enabledPath = config.enabledPath+"/"+server.name+".conf";
-    
-    fs.writeFileSync(availablePath);
-    if (server.enabled) {
-      fs.symlinkSync(availablePath, enabledPath);
+
+    try {
+      fs.unlinkSync(enabledPath);
+    } catch (e) {
+      
     }
+
+    try {
+      fs.writeFileSync(availablePath, output);
+    } catch (e) {
+      console.log(e);
+    }
+
+    if (server.enabled) {
+      try {
+        fs.symlinkSync(availablePath, enabledPath);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+
+
   });
 });
 
