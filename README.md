@@ -46,7 +46,7 @@ You creat a JSON file under `config/nginx`, i.e. a file called `webSite.json`:
 
     [
       {
-        "enabled": "true",
+        "enabled": true,
         "type": "php",
         "port": "80",
         "name": "www.example.com",
