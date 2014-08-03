@@ -50,6 +50,13 @@ updateHosts = function (servers) {
 }
 
 nginx.forEach(function (jsonObj) {
+  // Remove all Enabled files.
+  fs.readdirSync(config.enabledPath).forEach(function(file) {
+    var filePath = config.enabledPath+'/'+file;
+    fs.unlink(filePath);
+  });
+
+
   var servers = JSON.parse(jsonObj);
   servers.forEach(function (server) {
     var modelFile = fs.readFileSync('./models/nginx/'+server.type+'.mustache').toString();
