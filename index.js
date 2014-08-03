@@ -67,25 +67,27 @@ nginx.forEach(function (jsonObj) {
     var availablePath = config.availablePath+"/"+server.name+".conf";
     var enabledPath = config.enabledPath+"/"+server.name+".conf";
 
-    // try {
-    //   fs.unlinkSync(enabledPath);
-    // } catch (e) {
+    try {
+      fs.unlinkSync(enabledPath);
+    } catch (e) {
       
-    // }
+    }
 
-    // try {
-    //   fs.writeFileSync(availablePath, output);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      fs.writeFileSync(availablePath, output);
+      console.log('Created config file for '+server.name);
+    } catch (e) {
+      console.log(e);
+    }
 
-    // if (server.enabled) {
-    //   try {
-    //     fs.symlinkSync(availablePath, enabledPath);
-    //   } catch (e) {
-    //     console.log(e);
-    //   }
-    // }
+    if (server.enabled) {
+      try {
+        fs.symlinkSync(availablePath, enabledPath);
+        console.log('Linked config file for '+server.name);
+      } catch (e) {
+        console.log(e);
+      }
+    }
     
   });
   
