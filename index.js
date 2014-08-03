@@ -1,6 +1,7 @@
 var fs = require('graceful-fs'),
   path = require('path'),
-  Mustache = require('mustache');
+  Mustache = require('mustache'),
+  exec = require('child_process').exec;
 
 
 
@@ -87,7 +88,11 @@ nginx.forEach(function (jsonObj) {
 
 });
 
-
+exec(config.restartCommand, function (error, stdout, stderr) {
+  if (error !== null) {
+    console.log('exec error: ' + error);
+  }
+});
 
 gitHooks.forEach(function (jsonObj) {
   var gitHook = JSON.parse(jsonObj);
