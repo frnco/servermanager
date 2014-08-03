@@ -10,7 +10,7 @@
         "path": "/",
           "tries": [
             {
-              "try": "$uri "
+              "try": "$uri"
             },
             {
               "try": "$uri/"
