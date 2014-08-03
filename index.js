@@ -21,6 +21,33 @@ fs.readdirSync("./config/gitHooks/").forEach(function(file) {
   }
 });
 
+updateHosts = function (servers) {
+
+  try {
+    var hostsFile = fs.readFileSync(config.hostsPath, 'utf8');
+  } catch (e) {
+    console.log(e);
+  }
+
+  if (hostsFile.lastIndexOf('### Server Manager') < 0) {
+    hostsFile += "\n\n### Server Manager\n";
+  }
+
+  servers.forEach(function (server) {
+    if (hostsFile.lastIndexOf(server.name) < 0) {
+      hostsFile += "\n127.0.0.1        "+server.name;
+    }
+  });
+
+
+  try {
+    fs.writeFileSync(config.hostsPath, hostsFile);
+  } catch (e) {
+    console.log(e);
+  }
+  console.log(hostsFile);
+}
+
 nginx.forEach(function (jsonObj) {
   var servers = JSON.parse(jsonObj);
   servers.forEach(function (server) {
@@ -32,29 +59,32 @@ nginx.forEach(function (jsonObj) {
     var availablePath = config.availablePath+"/"+server.name+".conf";
     var enabledPath = config.enabledPath+"/"+server.name+".conf";
 
-    try {
-      fs.unlinkSync(enabledPath);
-    } catch (e) {
+    // try {
+    //   fs.unlinkSync(enabledPath);
+    // } catch (e) {
       
-    }
+    // }
 
-    try {
-      fs.writeFileSync(availablePath, output);
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   fs.writeFileSync(availablePath, output);
+    // } catch (e) {
+    //   console.log(e);
+    // }
 
-    if (server.enabled) {
-      try {
-        fs.symlinkSync(availablePath, enabledPath);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-
-
+    // if (server.enabled) {
+    //   try {
+    //     fs.symlinkSync(availablePath, enabledPath);
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }
+    
   });
+  
+  if (config.updateHosts) {
+    updateHosts(servers);
+  }
+
 });
 
 gitHooks.forEach(function (jsonObj) {

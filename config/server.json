@@ -3,5 +3,7 @@
   "availablePath": "/etc/nginx/sites-available",
   "enabledPath": "/etc/nginx/sites-enabled",
   "logsFolder": "/var/logs/nginx",
-  "restartCommand": "sudo service nginx restart"
+  "restartCommand": "sudo service nginx restart",
+  "updateHosts": true,
+  "hostsPath": "/etc/hosts"
 }
