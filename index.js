@@ -88,11 +88,13 @@ nginx.forEach(function (jsonObj) {
 
 });
 
-exec(config.restartCommand, function (error, stdout, stderr) {
-  if (error !== null) {
-    console.log('exec error: ' + error);
-  }
-});
+if (config.doRestart) {
+  exec(config.restartCommand, function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+  });
+}
 
 gitHooks.forEach(function (jsonObj) {
   var gitHook = JSON.parse(jsonObj);
