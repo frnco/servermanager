@@ -1,5 +1,6 @@
 var fs = require('graceful-fs'),
   path = require('path'),
+  mkdirp = require('mkdirp'),
   Mustache = require('mustache'),
   exec = require('child_process').exec;
 
@@ -82,6 +83,12 @@ nginx.forEach(function (jsonObj) {
 
     if (server.enabled) {
       try {
+        mkdirp(config.logsFolder+'/'+server.name, function(err) { 
+          if (err) {
+            console.log(err);
+          }
+        });
+
         fs.symlinkSync(availablePath, enabledPath);
         console.log('Linked config file for '+server.name);
       } catch (e) {
