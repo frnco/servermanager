@@ -3,7 +3,9 @@ ServerManager
 
 ### What Works
 
-* Nginx -> Setting up and deploying configuratioin files using JSon.
+* Nginx -> Setting up and deploying configuration files using JSon.
+* HostsFile -> Updating /etc/hosts (Or wherever it is located) on the Server for all enabled servers;
+* Restarting Nginx -> Restarts Nginx if defined on server.json
 
 ### What doesn't Work
 
@@ -34,11 +36,17 @@ You edit `config/server.json` for the correct NGinx Paths.
       "availablePath": "/etc/nginx/sites-available",
       "enabledPath": "/etc/nginx/sites-enabled",
       "logsFolder": "/var/logs/nginx",
-      "restartCommand": "sudo service nginx restart"
+      "doRestart": true,
+      "restartCommand": "sudo service nginx restart",
+      "updateHosts": true,
+      "hostsPath": "/etc/hosts"
     }
 
 
 Pretty straightforward. As you can imagine, the file will be created on the `availablePath` and, if enabled, Symlinked to the `enabledPath`. Also, all Logs will be put under the `logsFolder`, and everything will be logged.
+
+`doRestart` and `updateHosts` define if these options will be executed.
+`restartCommand` is the command for restarting Nginx, and `hostsPath` is the path for the hosts file (Usually `/etc/hosts`).
 
 ### For Server (NGinx) management:
 
