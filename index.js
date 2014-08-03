@@ -34,7 +34,7 @@ updateHosts = function (servers) {
   }
 
   servers.forEach(function (server) {
-    if (hostsFile.lastIndexOf(server.name) < 0) {
+    if (hostsFile.lastIndexOf(server.name) < 0 && server.enabled) {
       hostsFile += "\n127.0.0.1        "+server.name;
     }
   });
@@ -86,6 +86,8 @@ nginx.forEach(function (jsonObj) {
   }
 
 });
+
+
 
 gitHooks.forEach(function (jsonObj) {
   var gitHook = JSON.parse(jsonObj);
